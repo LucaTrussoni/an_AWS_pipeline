@@ -10,6 +10,20 @@ We need to develop an ETL pipeline for a customer who wants to perform analysis 
 For each currency to be loaded, two files are provided: Storico.csv and Trend.csv (with different and non-standardized names for each currency). The Storico.csv file contains the Data and Price columns to be loaded, reported daily with -1 as a missing value. The Trend.csv file contains the weekly Google trend. The request places emphasis on the parallelism and scalability of the pipeline execution, which must be independent for each currency. The files are provided by the user that uploads them to S3.
 
 ## The Solution
+### Files
+
+| File    | Description |
+| -------- | ------- |
+| load_raw_files.py  | uploads data to S3 (see below) |
+| user.key | example of authentication data |
+| BTC_EUR_Historical_Data.csv | example of historical data |
+| XMR_EUR Kraken Historica Data.csv | example of historical data |
+| google_trend_bitcoin.csv | example of historical data |
+| google_trend_monero.csv | example of historical data |
+| ClearBuckets.py | ETL GLue script (see below) |
+| bronze2silver.py | ETL GLue script (see below) |
+| silver2gold.py | ETL GLue script (see below) |
+| RedshiftUpload.py | ETL GLue script (see below) |
 
 ### Scripts
 
