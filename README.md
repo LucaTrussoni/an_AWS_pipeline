@@ -18,10 +18,10 @@ I files contenuti nel repository sono
 | File    | Descrizione |
 | -------- | ------- |
 | load_raw_files.py  | script per caricare i dati su S3 |
-| BTC_EUR_Historical_Data.csv | esempio di dati storici |
-| XMR_EUR Kraken Historica Data.csv | esempio di dati storici |
-| google_trend_bitcoin.csv | esempio di dati storici
-| google_trend_monero.csv | esempio di dati storici
+| BTC_EUR_Historical_Data.csv | esempio di dati storici (solo poche linee) |
+| XMR_EUR Kraken Historica Data.csv | esempio di dati storici (solo poche linee) |
+| google_trend_bitcoin.csv | esempio di dati storici (solo poche linee) |
+| google_trend_monero.csv | esempio di dati storici (solo poche linee) |
 | ClearBuckets.py | script ETL Glue (vedi sezione script)
 | bronze2silver.py | script ETL Glue (vedi sezione script) |
 | silver2gold.py | script ETL Glue (vedi sezione script) |
