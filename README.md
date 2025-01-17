@@ -26,6 +26,7 @@ I files contenuti nel repository sono
 | bronze2silver.py | script ETL Glue (vedi sezione script) |
 | silver2gold.py | script ETL Glue (vedi sezione script) |
 | RedshiftUpload.py | script ETL Glue (vedi sezeine script) |
+| .png files | immagini per questo readme |
 
 ### Script
 La soluzione proposta è una macchina a stati implementata con step functions che richiama componenti ETL glue.
