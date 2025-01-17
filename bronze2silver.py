@@ -13,7 +13,6 @@ glueContext = GlueContext(sc)
 spark = glueContext.spark_session
 job = Job(glueContext)
 job.init(args['JOB_NAME'], args)
-job.commit()
 
 # =============================================================
 
@@ -116,3 +115,6 @@ process_hist_file(args['HIST_FILE'], bronze_bucket_path, silver_bucket_path, arg
 logger.info('Processing google trend file')
 process_trend_file(args['TREND_FILE'], bronze_bucket_path, silver_bucket_path, args['TICKER'])
 logger.info('Processing completed')
+
+# =====================================
+job.commit()
