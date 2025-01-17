@@ -16,4 +16,16 @@ La soluzione proposta è una macchina a stati implementata con step functions ch
 #### Caricamento dati
 Lo script **load_raw_files.py** carica su S3 i files presenti nella directory in cui è lanciato. Le informazioni di autenticazione devono essere contenute nel file secret.key a parte.
 #### Step functions
-La macchina a stati è contenuta nel file cryptomachine.json. Per ogni criptovaluta sono eseguite tre step contenuti in diversi script:
+La macchina a stati è contenuta nel file **cryptomachine.json**. Per ogni criptovaluta sono eseguite tre step contenuti in diversi script:
+* lo script **bronze2silver.py** porta i dati dal bucket raw al bucket argento, occupandosi di gestire i dati mancanti. Lo script riceve i parametri HIST_FILE (nome del file contenente le quotazioni
+storiche), TREND_FILE (nome del file contenente il google trend), TICKER  (stringa di tre caratteri contenente il ticker della valuta), DROP (vale Y o N a seconda che si voglia cancellare o riempire
+con l’ultimo prezzo valido un valore mancante nel file delle quotazioni storiche). Lo script popola il bucket argento con i percorsi QQQ_hist e QQQ_trend, ove QQQ `e il ticker della valuta, contenente i file integrati in formato parquet.
+* lo script **silver2gold.py** trasporta i dati dal bucket argento al bucket oro, allineando temporalmente i valori dei file con i prezzi storici e le rilavazioni del google trend e aggiungendo una media mobile dei prezzi e un’interplazione lineare per date del google trend. Lo script riceve il parametro TICKER (il ticker della valuta). Lo script popola il bucket oro con il percorso QQQ, cio`e il ticker della valuta, con
+un file parquet contenente i dati opportunamente elaborati
+* lo script **RedshiftUpload.py** si occupa di caricare i dati su redshift (nel database crypto). Lo script riceve il parametro TICKER (ticker della valuta). Lo script carica sul database crypto in un gruppo di lavoro redshift, sfruttando la connessione crypto-connection. Nel database deve essere presente lo schema market_data che viene popolato con una tabella con nome uguale al ticker. Se la tabella è presente essa viene sostituita con quella nuova.
+
+#### Esecuzione
+Gli script sono eseguiti con il ruolo MyETLGlue che contiene le policy AmazonDMSRedshiftS3Role, AmazonRedshiftAllCommandsFullAccess, AmazonS3FullAccess e AWSGlueServiceRole (anche se sarebbe meglio adottare policy più restrittive). In AWS i nodi paralleli delle macchine a stati sono configurati in modo da bloccarsi non appena fallisce
+uno qualsiasi dei processi paralleli, fermando il flusso delle altre pipeline che potrebbero invece procedere indisturbati. Per ovviare
+a questo comportamento l’eventuale failure della pipeline di ciascuna valuta è gestita mediante un nodo ”Pass” che intercetta eventuali problemi: se si verifica il fallimento di una pipeline, le altre procedono senza che che il processo parallelo fallisca nel suo complesso. In figura 2 un esempio del flusso di esecuzione in cui si è provocato artificialmente un errore nella pipeline che gestisce Monero:
+l’esecuzione non termina verso la failure del processo parallelo bloccando la pipeline bitcoin ma procede grazie all’attivazione del nodo pass.
