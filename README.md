@@ -1,6 +1,6 @@
 # Esempio di pipeline ETL con AWS
 
-## Esercizio
+## Problema
 Si vuole sviluppare una pipeline per un cliente che desidera eseguire analisi su file di criptovalute, con tecnologia AWS. Le azioni richieste sono:
 * caricamento dei file su S3
 * trasformazione dei dati
