@@ -13,7 +13,6 @@ glueContext = GlueContext(sc)
 spark = glueContext.spark_session
 job = Job(glueContext)
 job.init(args['JOB_NAME'], args)
-job.commit()
 
 from pyspark.sql.functions import last,first,avg,when
 from pyspark.sql.window import Window
@@ -57,7 +56,8 @@ joined_dframe=joined_dframe.drop("g_trend_cont")
 # Time to write the file!
 joined_dframe.write.parquet(gold_bucket_path+args['TICKER'])
 
-
+# =====================================
+job.commit()
 
 
 
