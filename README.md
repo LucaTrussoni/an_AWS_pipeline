@@ -11,6 +11,16 @@ Per ogni valuta da caricare sono forniti due files: Storico.csv e Trend.csv (con
 è giornaliera. Il file Trend.csv contiene il google trend settimanale. Nella richiesta si pone l’accento sul parallelismo e la scalabilit`a dell’esecuzione della pipeline, che deve essere indipendente per ogni valuta. I file sono forniti dall’utente che li carica su S3.
 
 ## Soluzione
+### Files
+
+I files contenuti nel repository sono
+
+| File    | Descrizione |
+| -------- | ------- |
+| load_raw_files.py  | script per caricare i dati su S3 |
+| BTC_EUR_Historical_Data.csv | esempio di dati storici |
+| XMR_EUR Kraken Historica Data.csv | esempio di dati storici    |
+
 ### Script
 La soluzione proposta è una macchina a stati implementata con step functions che richiama componenti ETL glue.
 #### Caricamento dati
