@@ -18,7 +18,6 @@ I files contenuti nel repository sono
 | File    | Descrizione |
 | -------- | ------- |
 | load_raw_files.py  | script per caricare i dati su S3 |
-| user.key | esempio di dati di autenticazione |
 | BTC_EUR_Historical_Data.csv | esempio di dati storici |
 | XMR_EUR Kraken Historica Data.csv | esempio di dati storici |
 | google_trend_bitcoin.csv | esempio di dati storici
@@ -31,7 +30,7 @@ I files contenuti nel repository sono
 ### Script
 La soluzione proposta è una macchina a stati implementata con step functions che richiama componenti ETL glue.
 #### Caricamento dati
-Lo script **load_raw_files.py** carica su S3 i files presenti nella directory in cui è lanciato. Le informazioni di autenticazione devono essere contenute nel file user.key a parte.
+Lo script **load_raw_files.py** carica su S3 i files presenti nella directory in cui è lanciato. Le informazioni di autenticazione devono essere contenute in un file separato.
 #### Step functions
 La macchina a stati è contenuta nel file **cryptomachine.json**. 
 ![figura1](https://github.com/LucaTrussoni/an_AWS_pipeline/blob/b4e545dfa049ead17204d670be8e21085aebc050/cryptomachine.png)
