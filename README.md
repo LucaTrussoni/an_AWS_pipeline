@@ -33,7 +33,9 @@ Prima dell'esecuzione lo script **ClearBuckets.py** si occupa di cancellare i co
 Gli script sono eseguiti con il ruolo MyETLGlue che contiene le policy AmazonDMSRedshiftS3Role, AmazonRedshiftAllCommandsFullAccess, AmazonS3FullAccess e AWSGlueServiceRole (anche se sarebbe meglio adottare policy più restrittive). In AWS i nodi paralleli delle macchine a stati sono configurati in modo da bloccarsi non appena fallisce
 uno qualsiasi dei processi paralleli, fermando il flusso delle altre pipeline che potrebbero invece procedere indisturbati. Per ovviare
 a questo comportamento l’eventuale failure della pipeline di ciascuna valuta è gestita mediante un nodo ”Pass” che intercetta eventuali problemi: se si verifica il fallimento di una pipeline, le altre procedono senza che che il processo parallelo fallisca nel suo complesso. In figura un esempio del flusso di esecuzione in cui si è provocato artificialmente un errore nella pipeline che gestisce Monero:
+
 ![figura2](https://github.com/LucaTrussoni/an_AWS_pipeline/blob/effa42126f6c66c991e2997ef1ed5976ed420a1b/error_mngmt.png)
+
 l’esecuzione non termina verso la failure del processo parallelo bloccando la pipeline bitcoin ma procede grazie all’attivazione del nodo pass.
 Una volta eseguita la pipeline ecco come appaiono i dati dentro redshift:
 
