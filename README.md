@@ -17,7 +17,7 @@ La soluzione proposta è una macchina a stati implementata con step functions ch
 Lo script **load_raw_files.py** carica su S3 i files presenti nella directory in cui è lanciato. Le informazioni di autenticazione devono essere contenute nel file secret.key a parte.
 #### Step functions
 La macchina a stati è contenuta nel file **cryptomachine.json**. 
-![figura](https://github.com/LucaTrussoni/an_AWS_pipeline/blob/b4e545dfa049ead17204d670be8e21085aebc050/cryptomachine.png)
+![figura1](https://github.com/LucaTrussoni/an_AWS_pipeline/blob/b4e545dfa049ead17204d670be8e21085aebc050/cryptomachine.png)
 
 Per ogni criptovaluta sono eseguite tre step contenuti in diversi script:
 * lo script **bronze2silver.py** porta i dati dal bucket raw al bucket argento, occupandosi di gestire i dati mancanti. Lo script riceve i parametri HIST_FILE (nome del file contenente le quotazioni
@@ -30,5 +30,6 @@ un file parquet contenente i dati opportunamente elaborati
 #### Esecuzione
 Gli script sono eseguiti con il ruolo MyETLGlue che contiene le policy AmazonDMSRedshiftS3Role, AmazonRedshiftAllCommandsFullAccess, AmazonS3FullAccess e AWSGlueServiceRole (anche se sarebbe meglio adottare policy più restrittive). In AWS i nodi paralleli delle macchine a stati sono configurati in modo da bloccarsi non appena fallisce
 uno qualsiasi dei processi paralleli, fermando il flusso delle altre pipeline che potrebbero invece procedere indisturbati. Per ovviare
-a questo comportamento l’eventuale failure della pipeline di ciascuna valuta è gestita mediante un nodo ”Pass” che intercetta eventuali problemi: se si verifica il fallimento di una pipeline, le altre procedono senza che che il processo parallelo fallisca nel suo complesso. In figura 2 un esempio del flusso di esecuzione in cui si è provocato artificialmente un errore nella pipeline che gestisce Monero:
+a questo comportamento l’eventuale failure della pipeline di ciascuna valuta è gestita mediante un nodo ”Pass” che intercetta eventuali problemi: se si verifica il fallimento di una pipeline, le altre procedono senza che che il processo parallelo fallisca nel suo complesso. In figura un esempio del flusso di esecuzione in cui si è provocato artificialmente un errore nella pipeline che gestisce Monero:
+![figura2]()
 l’esecuzione non termina verso la failure del processo parallelo bloccando la pipeline bitcoin ma procede grazie all’attivazione del nodo pass.
