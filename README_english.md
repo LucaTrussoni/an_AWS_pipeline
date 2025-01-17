@@ -15,7 +15,6 @@ For each currency to be loaded, two files are provided: Storico.csv and Trend.cs
 | File    | Description |
 | -------- | ------- |
 | load_raw_files.py  | uploads data to S3 (see below) |
-| user.key | example of authentication data |
 | BTC_EUR_Historical_Data.csv | example of historical data |
 | XMR_EUR Kraken Historica Data.csv | example of historical data |
 | google_trend_bitcoin.csv | example of historical data |
@@ -31,7 +30,7 @@ A solution based on a state machine implemented with step functions that invokes
 
 ### Uploading data
 
-The script **load_raw_files.py** uploads to S3 the files that are present in the directory in which it is launched. Authentication information are stored in the separate secret.key file.
+The script **load_raw_files.py** uploads to S3 the files that are present in the directory in which it is launched. Authentication information are stored in a separate file.
 
 ### Step functions
 
