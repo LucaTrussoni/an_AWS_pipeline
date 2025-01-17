@@ -32,7 +32,7 @@ For each **cryptocurrency**, three steps contained in different scripts are perf
 
 Before execution, the **ClearBuckets.py** script takes care of clearing the contents of the silver and gold buckets.
 
-### Esecuzione
+### Execution
 The scripts are executed in the MyETLGlue role which contains the AmazonDMSRedshiftS3Role, AmazonRedshiftAllCommandsFullAccess, AmazonS3FullAccess and AWSGlueServiceRole policies (although it would be better to adopt more restrictive policies). In AWS, parallel state machine nodes are configured to crash as soon as it fails
 any of the parallel processes, stopping the flow of the other pipelines which could instead proceed undisturbed. To overcome this behavior, a failure of the pipeline of each currency is managed by a "Pass" that intercepts the broken execution flow: if one pipeline fails, the others proceed without the parallel process failing as a whole. The figure shows an example of the execution flow in which an error was artificially caused in the pipeline that manages Monero:
 
