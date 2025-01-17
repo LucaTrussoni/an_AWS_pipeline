@@ -23,6 +23,7 @@ For each currency to be loaded, two files are provided: Storico.csv and Trend.cs
 | bronze2silver.py | ETL GLue script (see below) |
 | silver2gold.py | ETL GLue script (see below) |
 | RedshiftUpload.py | ETL GLue script (see below) |
+| .png files | figures for this readme |
 
 ### Scripts
 
