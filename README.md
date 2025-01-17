@@ -29,7 +29,7 @@ un file parquet contenente i dati opportunamente elaborati
 
 Prima dell'esecuzione lo script **ClearBuckets.py** si occupa di cancellare i contenuti dei bucket argeto e oro.
 
-#### Esecuzione
+### Esecuzione
 Gli script sono eseguiti con il ruolo MyETLGlue che contiene le policy AmazonDMSRedshiftS3Role, AmazonRedshiftAllCommandsFullAccess, AmazonS3FullAccess e AWSGlueServiceRole (anche se sarebbe meglio adottare policy più restrittive). In AWS i nodi paralleli delle macchine a stati sono configurati in modo da bloccarsi non appena fallisce
 uno qualsiasi dei processi paralleli, fermando il flusso delle altre pipeline che potrebbero invece procedere indisturbati. Per ovviare
 a questo comportamento l’eventuale failure della pipeline di ciascuna valuta è gestita mediante un nodo ”Pass” che intercetta eventuali problemi: se si verifica il fallimento di una pipeline, le altre procedono senza che che il processo parallelo fallisca nel suo complesso. In figura un esempio del flusso di esecuzione in cui si è provocato artificialmente un errore nella pipeline che gestisce Monero:
