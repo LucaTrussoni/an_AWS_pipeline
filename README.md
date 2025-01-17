@@ -17,7 +17,7 @@ La soluzione proposta è una macchina a stati implementata con step functions ch
 Lo script **load_raw_files.py** carica su S3 i files presenti nella directory in cui è lanciato. Le informazioni di autenticazione devono essere contenute nel file secret.key a parte.
 #### Step functions
 La macchina a stati è contenuta nel file **cryptomachine.json**. 
-[figura](https://github.com/LucaTrussoni/an_AWS_pipeline/blob/b4e545dfa049ead17204d670be8e21085aebc050/cryptomachine.png)
+![figura](https://github.com/LucaTrussoni/an_AWS_pipeline/blob/b4e545dfa049ead17204d670be8e21085aebc050/cryptomachine.png)
 
 Per ogni criptovaluta sono eseguite tre step contenuti in diversi script:
 * lo script **bronze2silver.py** porta i dati dal bucket raw al bucket argento, occupandosi di gestire i dati mancanti. Lo script riceve i parametri HIST_FILE (nome del file contenente le quotazioni
