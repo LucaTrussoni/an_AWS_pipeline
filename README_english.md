@@ -15,10 +15,10 @@ For each currency to be loaded, two files are provided: Storico.csv and Trend.cs
 | File    | Description |
 | -------- | ------- |
 | load_raw_files.py  | uploads data to S3 (see below) |
-| BTC_EUR_Historical_Data.csv | example of historical data |
-| XMR_EUR Kraken Historica Data.csv | example of historical data |
-| google_trend_bitcoin.csv | example of historical data |
-| google_trend_monero.csv | example of historical data |
+| BTC_EUR_Historical_Data.csv | example of historical data (few lines only) |
+| XMR_EUR Kraken Historica Data.csv | example of historical data (few lines only) |
+| google_trend_bitcoin.csv | example of historical data (few lines only) |
+| google_trend_monero.csv | example of historical data (few lines only) |
 | ClearBuckets.py | ETL GLue script (see below) |
 | bronze2silver.py | ETL GLue script (see below) |
 | silver2gold.py | ETL GLue script (see below) |
